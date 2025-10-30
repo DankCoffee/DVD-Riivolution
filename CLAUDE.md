@@ -146,6 +146,7 @@ The `dipmodule` also contains USB HID handling (`dipmodule/source/usbhid.cpp`) t
 - `launcher/source/launcher.cpp` - Game launching logic
 - `launcher/source/riivolution.cpp` - Riivolution XML patch engine
 - `launcher/source/riivolution_config.cpp` - Patch configuration parsing
+- `launcher/source/gamepatches.cpp` - Automatic game compatibility patches
 - `launcher/source/menu*.cpp` - GUI menu implementations
 
 ### IOS Modules
@@ -205,6 +206,35 @@ Patch files are XML configs that define:
 - Folder redirects (mount custom content directories)
 
 Parser is in `launcher/source/riivolution_config.cpp`.
+
+### Automatic Game Compatibility Patches
+
+HAI-Riivolution includes built-in compatibility patches for known problematic games (adapted from USBLoaderGX):
+
+**Implementation**: `launcher/source/gamepatches.cpp`
+
+**Supported Games**:
+- New Super Mario Bros Wii (USB compatibility)
+- Prince of Persia (byte ordering fixes)
+- Resident Evil 4 (USB detection)
+- Excite Truck (SD card check bypass)
+- Kirby's Return to Dream Land (SD card check bypass)
+- Mario Kart Wii (RCE vulnerability patch)
+
+**Behavior**:
+- Patches are **always applied automatically** when game ID matches
+- **Conflict detection**: Skips patch if user-supplied XML already patches the same memory offset
+- **No user interaction**: Patches are invisible and always enabled
+- Integration point: `menu_main.cpp:465` (after CombineDiscs, before ParseConfigXMLs)
+
+**Conflict Handling**:
+```cpp
+// Checks before adding each patch:
+1. PatchExists(disc, patchID) - Skip if patch ID already exists
+2. OffsetPatchExists(disc, offset) - Skip if ANY patch targets this address
+```
+
+User-supplied patches always take precedence over built-in patches.
 
 ## Important Build Notes
 

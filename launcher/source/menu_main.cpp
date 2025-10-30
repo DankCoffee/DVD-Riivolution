@@ -5,6 +5,7 @@
 #include "installer.h"
 #include "init.h"
 #include "usb.h"
+#include "gamepatches.h"
 
 #include <unistd.h>
 #include <files.h>
@@ -459,6 +460,10 @@ Menus::Enum MenuInit()
 			Mounted.push_back(*tomount);
 	}
 	Disc = CombineDiscs(&discs);
+
+	// Add built-in game compatibility patches (only if not already present in user XMLs)
+	AddBuiltinPatches(&Disc);
+
 	ParseConfigXMLs(&Disc);
 
 	Launcher_RVL();
