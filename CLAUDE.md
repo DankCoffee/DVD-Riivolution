@@ -27,7 +27,37 @@ HAI-Riivolution is a modified version of Riivolution and RawkSD that runs on Nin
 
 **IMPORTANT**: Building MUST be done from the devkitPPC Docker container. Do NOT attempt to build directly from the host system.
 
-### Standard Build
+### Docker Build (Recommended)
+
+HAI-Riivolution builds successfully with modern devkitPro toolchains.
+
+**Using devkitpro/devkitppc:latest container:**
+
+```bash
+cd /path/to/HAI-Riivolution
+
+# Pull the latest devkitPPC container (if not already available)
+docker pull devkitpro/devkitppc:latest
+
+# Build all targets
+docker run --rm -v "$PWD:/mnt" devkitpro/devkitppc:latest \
+  bash -c "cd /mnt/launcher && make -j\$(nproc)"
+
+# Build RawkSD
+docker run --rm -v "$PWD:/mnt" devkitpro/devkitppc:latest \
+  bash -c "cd /mnt/rawksd && make -j\$(nproc)"
+
+# Clean build
+docker run --rm -v "$PWD:/mnt" devkitpro/devkitppc:latest \
+  bash -c "cd /mnt/launcher && make clean"
+```
+
+**Toolchain versions in container:**
+- devkitPPC release 47.1 (gcc 15.1.0)
+- devkitARM release 66 (gcc 15.1.0)
+- Both PowerPC and ARM code build successfully
+
+### Standard Build (Inside Container)
 ```bash
 # Build all targets (launcher, rawksd, and riifs)
 make -j
@@ -42,11 +72,11 @@ make clean
 ```
 
 ### Build Environment
-- Building requires the devkitPPC Docker container with all dependencies installed
-- See README.md Docker section for container setup
-- Claude Code should NOT execute build commands
+- Modern devkitPPC and devkitARM toolchains (gcc 15.1.0)
+- All dependencies included in devkitpro/devkitppc:latest container
+- No additional package installation required
 
-### Dependencies Required
+### Dependencies (If building outside Docker)
 - devkitPPC and devkitARM toolchains
 - `dkp-pacman -S wii-dev ppc-portlibs wii-portlibs devkitARM`
 - `dkp-pacman -S ppc-libogg ppc-libvorbisidec ppc-freetype`
@@ -58,6 +88,26 @@ To enable remote debug output, uncomment `#define DEBUG_NET 1` in `launcher/incl
 ```bash
 socat TCP4-LISTEN:51016,fork,reuseaddr STDOUT
 ```
+
+## Pre-Commit Build Verification
+
+This repository includes a pre-commit hook that automatically verifies the launcher builds successfully before allowing commits.
+
+**Location:** `.git/hooks/pre-commit`
+
+The hook will:
+1. Check if Docker and devkitpro/devkitppc:latest image are available
+2. Build the launcher component using make
+3. Block the commit if build fails
+4. Clean up build artifacts after verification
+
+**To skip the check** (not recommended):
+```bash
+git commit --no-verify
+```
+
+**First-time setup:**
+The pre-commit hook is automatically installed when you clone the repository. It will auto-pull the devkitpro/devkitppc:latest container if needed.
 
 ## Architecture Overview
 

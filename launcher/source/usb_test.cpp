@@ -100,8 +100,8 @@ int USB_TestHardcodedGame()
 	u32 disc_id[8] ATTRIBUTE_ALIGN(32);
 	memset(disc_id, 0, sizeof(disc_id));
 
-	ret = WDVD_ReadDiskId(disc_id);
-	if (ret < 0) {
+	ret = WDVD_LowReadDiskId();
+	if (ret != 0) {
 		printf("      ERROR: Failed to read disc ID (ret=%d)\n", ret);
 		printf("\n");
 		printf("This usually means:\n");
@@ -114,6 +114,8 @@ int USB_TestHardcodedGame()
 		return ret;
 	}
 
+	// WDVD_LowReadDiskId() writes to 0x80000000, copy it to our buffer
+	memcpy(disc_id, (void*)0x80000000, 32);
 	printf("      Disc ID read: %.6s\n", (char*)disc_id);
 	printf("      Expected:     %.6s\n", TEST_GAME_ID);
 	printf("\n");
