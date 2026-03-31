@@ -174,16 +174,6 @@ int RVL_AddEmu(const char* nandpath, const char* external, int clone)
 	return IOS_Ioctlv(fd, Ioctl::AddEmu, 3, 0, vec);
 }
 
-int RVL_BanDLC(u32 title)
-{
-#ifndef YARR
-	ioctlbuffer[0] = title;
-	return IOS_Ioctl(fd, Ioctl::BanTitle, ioctlbuffer, 4, NULL, 0);
-#else
-	return 0;
-#endif
-}
-
 int RVL_DLC(const char* path)
 {
 	return IOS_Ioctl(fd, Ioctl::DLC, (void*)path, strlen(path) + 1, NULL, 0);
@@ -636,8 +626,6 @@ void RVL_Unmount()
 				u32 game_id;
 				memcpy(&game_id, MEM_BASE, 4);
 				File_Read(tik_file, tik_data, STD_SIGNED_TIK_SIZE);
-				if ((tik_data[0x76] && tik_data[0x76] != otp.ng_id) || (tik_data[0x7A]==(game_id&~tik_data[0x7B]) && check_cert_chain((u8*)tik_data, STD_SIGNED_TIK_SIZE)))
-					RVL_BanDLC(tik_data[0x78]);
 				File_Close(tik_file);
 			}
 		}
