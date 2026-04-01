@@ -513,7 +513,20 @@ int InstallChannel()
 		u8* const ECDH_Secret = (u8*)0x93A75180;
 		DCInvalidateRange(ECDH_Secret, 32);
 
-		SHA1(ECDH_Secret, 30, ECDH_hash);
+		// Search for ECDH secret by looking for GCC signature
+		const char gcc_sig[] = "\0GCC: (GNU) 3.4.3\0\0\0";
+		u8* search_ptr = (u8*)0x93A00000;
+		memset(ECDH_hash, 0, sizeof(ECDH_hash));
+		for (int i = 0; i < 0x100000; i += 64) {
+			if (memcmp(search_ptr + i, gcc_sig, sizeof(gcc_sig)-1) == 0) {
+				DCInvalidateRange(search_ptr + i - 30, 64);
+				SHA1(search_ptr + i - 30, 30, ECDH_hash);
+				break;
+			}
+		}
+		// Fallback to hardcoded address if search fails
+		if (ECDH_hash[0] == 0)
+			SHA1(ECDH_Secret, 30, ECDH_hash);
 		// got the hash, now encrypt the title key in the ticket
 		memcpy(raw_key, metatik->cipher_title_key, 16);
 		memset(iv+8, 0, sizeof(iv)-8);
