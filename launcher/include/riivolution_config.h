@@ -6,8 +6,8 @@
 #include <map>
 #include <vector>
 
-#define RIIVOLUTION_PATH "/riivolution"
-#define RIIVOLUTION_PATH2 "/apps/riivolution" // ... Idiots.
+#define RIIVOLUTION_PATH "/dvd-riivolution"
+#define RIIVOLUTION_PATH2 "/apps/dvd-riivolution" // ... Idiots.
 
 struct RiiMacro {
 	std::string Name;

@@ -24,15 +24,15 @@ ifneq ($(BUILD),$(notdir $(CURDIR)))
 
 riiv.zip: boot.elf
 	@echo packaging ... $@
-	@cp $< hbc/apps/riivolution/boot.elf
-	@cd hbc/apps; zip -D riiv.zip riivolution/*
+	@cp $< hbc/apps/dvd-riivolution/boot.elf
+	@cd hbc/apps; zip -D riiv.zip dvd-riivolution/*
 	@mv hbc/apps/riiv.zip .
 
 z: riiv.zip
 
 clean: clean-riiv
 clean-riiv:
-	@rm -f riiv.zip hbc/apps/riivolution/boot.elf
+	@rm -f riiv.zip hbc/apps/dvd-riivolution/boot.elf
 
 .PHONY: clean-riiv
 
