@@ -352,9 +352,6 @@ struct PageViewer {
 			return Menus::Settings; \
 	} \
 	CheckShutdown(); \
-	/* Check for disc insertion */ \
-	if (!Launcher_DiscInserted()) \
-		return Menus::Init; \
 }
 
 Menus::Enum MenuMount()
@@ -410,15 +407,9 @@ Menus::Enum MenuInit()
 				HaltGui(); Subtitle->SetText("Insert Disc..."); ResumeGui();
 				break;
 			case LauncherStatus::ReadError:
-				// Check if disc was ejected vs actual read error
-				if (!Launcher_DiscInserted()) {
-					HaltGui(); Subtitle->SetText("Insert Disc..."); ResumeGui();
-					status = LauncherStatus::NoDisc;
-				} else {
-					HaltGui(); Subtitle->SetText("Disc Read Error!"); ResumeGui();
-					sleep(3);
-					HaltGui(); Subtitle->SetText("Loading..."); ResumeGui();
-				}
+				HaltGui(); Subtitle->SetText("Disc Read Error!"); ResumeGui();
+				sleep(3); // TODO: Repeatedly MENUINIT_CHECKBUTTONS during this sleep
+				HaltGui(); Subtitle->SetText("Loading..."); ResumeGui();
 				break;
 			default:
 				break;
