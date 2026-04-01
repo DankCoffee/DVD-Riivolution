@@ -225,7 +225,7 @@ ButtonList::ButtonList(GuiWindow* window, int items)
 
 	for (int i = 0; i < Count; i++) {
 		Text[i] = new GuiText("", 24, (GXColor){0, 0, 0, 255});
-		TextOver[i] = new GuiText("", 24, (GXColor){0, 128, 255, 255});
+		TextOver[i] = new GuiText("", 24, (GXColor){0, 128, 128, 255});
 		Text[i]->SetAlignment(ALIGN_LEFT, ALIGN_TOP);
 		Text[i]->SetPosition(0, 0);
 		TextOver[i]->SetAlignment(ALIGN_LEFT, ALIGN_TOP);
@@ -255,8 +255,7 @@ void ButtonList::SetButton(int index, const char* text, int imageindex)
 	Images[index] = new GuiImage(ImageData[imageindex]);
 	Images[index]->SetAlignment(ALIGN_LEFT, ALIGN_TOP);
 	Images[index]->SetPosition(536, 192 + (18 + 32) * (3 - index));
-	Buttons[index]->SetImage(Images[index]);
-	Buttons[index]->SetImageOver(Images[index]);
+	Window->Append(Images[index]);
 }
 
 int ButtonList::Pressed()

@@ -250,7 +250,7 @@ struct PageViewer {
 			GuiText* choiceText = new GuiText(GetChoiceText(option), OPTION_FONT_SIZE, (GXColor){0, 0, 0, 255}); ChoiceText[i] = choiceText;
 			choiceText->SetAlignment(ALIGN_CENTRE, ALIGN_TOP);
 			choiceText->SetPosition(0, 0);
-			GuiText* choiceOverText = new GuiText(GetChoiceText(option), OPTION_FONT_SIZE, (GXColor){128, 0, 0, 255}); ChoiceOverText[i] = choiceOverText;
+			GuiText* choiceOverText = new GuiText(GetChoiceText(option), OPTION_FONT_SIZE, (GXColor){0, 128, 128, 255}); ChoiceOverText[i] = choiceOverText;
 			choiceOverText->SetAlignment(ALIGN_CENTRE, ALIGN_TOP);
 			choiceOverText->SetPosition(0, 0);
 
