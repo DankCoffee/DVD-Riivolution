@@ -498,8 +498,8 @@ static void PreparePages()
 	}
 }
 
-#define BANNER_TICKET_PATH "/ticket/00010001/44564452.tik"
-#define BANNER_CONTENT_PATH "/title/00010001/44564452"
+#define BANNER_TICKET_PATH "/ticket/00010001/52494956.tik"
+#define BANNER_CONTENT_PATH "/title/00010001/52494956"
 
 Menus::Enum MenuMain()
 {
