@@ -418,7 +418,7 @@ static u8* ReadChannelData(int index, u32* size)
 	if (index < 2 && is_wiiu)
 		return CopyChannelData(banner_vwii_dat, banner_vwii_dat_size, size);
 
-	ret = ReadChannelDol("/apps/riivolution/boot.elf", size);
+	ret = ReadChannelDol("/apps/dvd-riivolution/boot.elf", size);
 	if (!ret)
 		ret = ReadChannelDol("/boot.elf", size);
 	return ret;
