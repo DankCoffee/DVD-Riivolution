@@ -1,23 +1,21 @@
-Riivolution v1.07
-by Aaron, tueidj, Tempus, and megazig
-riivolution@japaneatahand.com
+DVD-Riivolution v1.07
+by Aaron, tueidj, Tempus, and megazig. Modified to support burned discs by DankCoffee
 
-Homepage: https://aerialx.github.io/rvlution.net/wiki/Riivolution
-Download: https://aerialx.github.io/rvlution.net/riivolution.zip
+DVD-Riivolution is an on-the-fly game patcher for use with burned and retail discs. It allows users to place content on their SD or USB devices, which will be read by the game during regular play.
+DVD-Riivolution can be used for custom textures, music, levels, memory patches, game translations, and more.
 
-Riivolution is an on-the-fly game patcher for use with retail discs. It allows users to place content on their SD or USB devices, which will be read by the game during regular play.
-Riivolution can be used for custom textures, music, levels, memory patches, game translations, and more.
+WE DO NOT ENDORSE PIRACY!! PLEASE BURN YOUR DISCS USING LEGITIMATE DUMPS OF YOUR OWN GAMES!!
 
-Mini-FAQ - Updated online version: https://aerialx.github.io/rvlution.net/wiki/FAQ
+Mini-FAQ - Updated online version: https://aerialx.github.io/rvlution.net/wiki/FAQ (Kept for historical purposes)
 
-Q: Does Riivolution work with my "backups" or USB loaders?
-A: No. And that's not a bug.
+Q: Does DVD-Riivolution work with my "backups" or USB loaders?
+A: It currently only works with burned discs. Moreover, you need a compatible Wii with a modchip installed to use them.
 
 Q: Does Riivolution work with my PAL/NTSC/JAP Wii/game?
 A: Yes.
 
-Q: Does Riivolution work on my Wii U?
-A: It does now! In vWii mode (it does not work with Wii U games) Riivolution can be run or installed through Smash Stack, other game exploits, or the Homebrew Channel if it's already installed.
+Q: Does DVD-Riivolution work on my Wii U?
+A: It does now! In vWii mode (it does not work with Wii U games) Riivolution can be run or installed through Smash Stack, other game exploits, or the Homebrew Channel if it's already installed. However, it does not support burned discs.
 
 Q: What IOS does it need installed?
 A: Riivolution requires an updated IOS37; if you're on System Menu 4.2 or 4.3 you don't need to do anything.
@@ -52,9 +50,10 @@ Special thanks to everyone that contributed: Treeki, Omega, Pop006, TobiasAmaran
 
 Changelog
 
-v1.07
-December XXth, 20XX
- - ???
+DVD-v1.07
+April 5th, 2026
+ - Add support for burned discs
+ - Rebranded to DVD-Riivolution
 
 v1.06
 December 18th, 2013
