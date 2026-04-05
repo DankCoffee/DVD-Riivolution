@@ -2,7 +2,6 @@
 
 Modified version of Riivolution for use with burned discs.
 
-Information archives:
 - [Riivolution Wiki](https://aerialx.github.io/rvlution.net/wiki/Main_Page/)
 
 ## Dependencies
