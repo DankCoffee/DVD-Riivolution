@@ -46,8 +46,12 @@ dpkg --add-architecture i386
 apt-get update && apt-get install -y --no-install-recommends g++ libgcc1:i386 zlib1g:i386 python3 python3-yaml
 # dkp-pacman -Syyu
 
-make launcher -C /mnt -j
+git clone https://github.com/DankCoffee/DVD-Riivolution && cd DVD-Riivolution
+
+make -C /mnt -j
 ```
+
+## The rest of the building methods shown below are outdated. It is recommended to build the project via Docker.
 
 #### Hate Docker?
 
