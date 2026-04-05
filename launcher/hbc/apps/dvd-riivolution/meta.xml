@@ -4,7 +4,7 @@
 	<coder>Aaron, tueidj, Tempus, megazig, DankCoffee</coder>
 	<version>DVD-v1.07</version>
 	<release_date>20260331120000</release_date>
-	<short_description>DVD-Riivolution Patcher</short_description>
+	<short_description>Riivolution for burned discs</short_description>
 	<long_description>DVD-Riivolution is an on-the-fly game patcher for use with burned and retail discs. It allows users to place content on their SD or USB devices, which will be read by the game during regular play. DVD-Riivolution can be used for custom textures, music, levels, memory patches, game translations, and more.
 
 DVD-Riivolution requires valid game content and an XML file to apply changes to games. Using burned discs requires a compatible Wii with a modchip installed. It does not work on Wii U.
