@@ -1,10 +1,9 @@
-# [DVD-Riivolution](https://wiibrew.org/wiki/Riivolution) and [RawkSD](https://wiibrew.org/wiki/RawkSD)
+# [DVD-Riivolution](https://wiibrew.org/wiki/Riivolution)
 
 Modified version of Riivolution for use with burned discs.
 
 Information archives:
 - [Riivolution Wiki](https://aerialx.github.io/rvlution.net/wiki/Main_Page/)
-- [RawkSD beta](https://www.japaneatahand.com/rawksd/beta.htm)
 
 ## Dependencies
 
@@ -33,18 +32,21 @@ make riifs # RiiFS server
 
 See the [automated build scripts](./.github/workflows/build.yml) for reference and further examples.
 
-### Docker
+### Docker (Recommended!)
 
 The [devkitpro/devkitppc](https://hub.docker.com/r/devkitpro/devkitppc) Docker image can be used:
 
 ```shell
-docker run --interactive --tty --rm --mount type=bind,source=$PWD,destination=/mnt devkitpro/devkitppc
+docker run --interactive --tty --rm --mount type=bind,source=$PWD,destination=/mnt devkitpro/devkitppc:20250527
+
+sudo sed -i 's/bullseye/bookworm/g' /etc/apt/sources.list
+sudo sed -i 's/bullseye/bookworm/g' /etc/apt/sources.list.d/*.list
 
 dpkg --add-architecture i386
 apt-get update && apt-get install -y --no-install-recommends g++ libgcc1:i386 zlib1g:i386 python3 python3-yaml
 # dkp-pacman -Syyu
 
-make -C /mnt -j
+make launcher -C /mnt -j
 ```
 
 #### Hate Docker?
